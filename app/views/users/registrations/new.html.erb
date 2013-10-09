@@ -1,0 +1,16 @@
+<div class = "signup"><h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name, :autofocus => true %></div>
+
+  <div style = "width:100px"><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div style = "width:100px"><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "users/shared/links" %>
+</div>

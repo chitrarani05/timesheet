@@ -1,0 +1,27 @@
+<h1> Client Management </h1>
+<div class="CSSTableGenerator" >
+<table cellspacing="5" cellpadding="5">
+  <tr>
+    <td align = "left"> Name </td>
+    <td align = "left"> Code </td>
+    <td colspan="3", align = "left"> Actions </td>
+  </tr>
+<% if @clients.present? %>
+  <% @clients.each do |client| %>
+    <tr>
+      <td><%= client.name %> </td>
+      <td><%= client.code %> </td>
+      <td><%= link_to("show", client_path(client.id)) %> </td> 
+      <td><%= link_to("Edit", edit_client_path(client.id)) %> </td> 
+      <% if client.projects.blank? %>
+        <td><%= link_to("Delete", client, confirm: 'Are you sure?', method: :delete) %> </td>   
+      <% end %>
+    </tr>
+  <% end %>
+<% else %>
+  <tr><td colspan="4"> "No client found" </td></tr>
+<% end %> 
+<table>
+<%= link_to("New Client", new_client_path) %><br />
+<%= link_to("Back", root_path) %>
+</div>

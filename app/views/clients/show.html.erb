@@ -1,0 +1,35 @@
+<h1>Show Client</h1>
+<%= link_to 'Back', clients_path %>
+&nbsp;|&nbsp;
+<%= link_to 'Edit', edit_client_path(@client) %>
+<% if @client.projects.blank? %>
+  &nbsp;|&nbsp;
+  <%= link_to("Delete", @client, confirm: 'Are you sure?', method: :delete) %> </td> &nbsp;&nbsp;
+<% end %>
+<div class="CSSTableGenerator" >
+<table >
+  <tr>
+    <td><b>Name:</b></td>&nbsp;
+    <td><%= @client.name %></td>
+  </tr>
+  <tr><td colspan="2">&nbsp;</td></tr>
+  <tr>
+    <td><b>Code:</b></td>&nbsp;
+    <td><%= @client.code %></td>
+  </tr>
+  <tr><td colspan="2">&nbsp;</td></tr>
+  <tr>
+    <td valign=top><b>Project:</b></td>&nbsp;
+    <td>
+      <% if @client.projects.blank? %>
+          no project yet
+      <% else %>
+        <% @client.projects.each do |project| %>
+          <%= project.name %><br>  
+        <% end %>
+      <% end %>
+    </td>    
+  </tr>
+  <tr><td colspan="2">&nbsp;</td></tr>
+</table>    
+</div>

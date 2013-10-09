@@ -1,0 +1,27 @@
+<% f.fields_for :users do |users_form| %>
+  <table>
+    <tr>
+      <td>
+        <%= user_form.label :name %>
+      </td>
+      <td>
+        <%= user_form.text_field :name %>&nbsp;
+        <% if @employee.errors.present? && @employee.errors[:name].present? %> 
+          <%= @employee.errors[:name].join(", ") %>
+        <% end %> 
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td>
+        <%= user_form.label :email %>
+      </td>
+      <td>
+        <%= user_form.text_field :email %>&nbsp;
+        <% if @employee.errors.present? && @employee.errors[:email].present? %> 
+          <%= @employee.errors[:email].join(", ") %>
+        <% end %> 
+      </td>
+    </tr>
+  </table>  
+<% end%>

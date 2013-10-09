@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timesheet Management</title>
+  <%= stylesheet_link_tag :application, media: "all" %>
+  <%= javascript_include_tag :application %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="body">
+  
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  
+  <div class="logout">
+    <% if user_signed_in? %>
+      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+      <%= link_to 'Change password', edit_user_registration_path %>
+    <% end %> 
+  </div>
+   
+  <%# if flash[:error].present? %>
+    <%#= flash[:error] %>
+  <%# end %>
+   
+
+  <%= yield %>
+
+</body>
+</html>
