@@ -21,6 +21,8 @@ group :assets do
 end
 
 gem 'jquery-rails', '3.0.4'
+gem 'devise', '3.0'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -36,4 +38,3 @@ gem 'jquery-rails', '3.0.4'
 # To use debugger
  gem 'debugger', '1.6.1'
  gem 'quiet_assets', '1.0.2'
- gem 'devise', '3.0' 
