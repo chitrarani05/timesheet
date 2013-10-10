@@ -1,5 +1,5 @@
-<%# debugger %> 
-<%= form_for(@employee, validate: true, url: employees_path, method: :post) do |f| %>
+<%= form_for(@employee) do |f| %>
+<div class="CSSTableGenerator" >
   <table>
     <tr>
       <td>
@@ -37,35 +37,40 @@
       </td>
     </tr>
     <tr><td colspan="2">&nbsp;</td></tr>
-    <%= f.fields_for :user, @employee.build_user do |user_fields| %>
-    <tr>
-      <td>
-        <%= user_fields.label :name %>
-      </td>
-      <td>
-        <%= user_fields.text_field :name %>&nbsp;
-        <% if @employee.user.errors.present? && @employee.user.errors[:name].present? %> 
-          <%= @employee.user.errors[:name].join(", ") %>
-        <% end %> 
-      </td>
-    </tr>
-    <tr><td colspan="2">&nbsp;</td></tr>
-    <tr>
-      <td>
-        <%= user_fields.label :email %>
-      </td>
-      <td>
-        <%= user_fields.text_field :email %>&nbsp;
-        <% if @employee.user.errors.present? && @employee.user.errors[:email].present? %> 
-          <%= @employee.user.errors[:email].join(", ") %>
-        <% end %> 
-      </td>
-    </tr> 
-    <% end %>  
+    <%# debugger %>
+    <% if params[:action] == "new" || params[:action] == "create" %>
+      <%= f.fields_for :user  do |user_fields| %>
+      <tr>
+        <td>
+          <%= user_fields.label :name %>
+        </td>
+        <td>
+        <%# debugger %>
+          <%= user_fields.text_field :name %>&nbsp;
+          <% if @employee.user.errors.present? && @employee.user.errors[:name].present? %> 
+            <%= @employee.user.errors[:name].join(", ") %>
+          <% end %> 
+        </td>
+      </tr>
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr>
+        <td>
+          <%= user_fields.label :email %>
+        </td>
+        <td>
+          <%= user_fields.text_field :email %>&nbsp;
+          <% if @employee.user.errors.present? && @employee.user.errors[:email].present? %> 
+            <%= @employee.user.errors[:email].join(", ") %>
+          <% end %> 
+        </td>
+      </tr> 
+      <% end %> 
+    <% end %>   
     <tr>
       <td colspan="5">
         <%= f.submit %>
       </td>
     </tr>
-  </table>  
+  </table> 
+</div>   
 <% end %>  

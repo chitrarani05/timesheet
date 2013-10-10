@@ -8,13 +8,12 @@ class Employee < ActiveRecord::Base
   ################
   ## Associations
   ################
-  has_one :user
+  has_one :user, dependent: :destroy
   ##############
   ## Call Backs
   ##############
   before_validation :squish_fields
   accepts_nested_attributes_for :user
-  #######################
   ## Attribute Accessors
   #######################
   attr_accessible :firstname, :lastname, :code, :user_attributes
@@ -23,15 +22,15 @@ class Employee < ActiveRecord::Base
   ## Validations
   ###############
   validates :firstname, presence: true, uniqueness: { case_sensitive: false} , 
-    :format => { with: /^[a-zA-Z\s]*$/, message: "must be character and space" }
+                       format: { with: /^[a-zA-Z\s]*$/, message: "must be character and space" }
     
   validates :lastname, presence: true, uniqueness: { case_sensitive: false} , 
-    :format => { with: /^[a-zA-Z\s]*$/, message: "must be character and space" }
+                       format: { with: /^[a-zA-Z\s]*$/, message: "must be character and space" }
   
   validates :code, presence: true, uniqueness: { case_sensitive: false} ,
-    :format => { with: /^[a-zA-Z0-9]*$/, message: "must be alphanumeric" }
+                   format: { with: /^[a-zA-Z0-9]*$/, message: "must be alphanumeric" }
 
-  
+   
 
   #################
   ## Class Methods

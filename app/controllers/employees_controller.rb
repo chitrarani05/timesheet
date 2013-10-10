@@ -21,7 +21,7 @@ class EmployeesController < ApplicationController
   def new
   #debugger
     @employee = Employee.new
-    @user = @employee.build_user 
+    @employee.build_user 
   end
   #actually create the new employee
   def create
@@ -42,13 +42,13 @@ class EmployeesController < ApplicationController
    
   def edit
     @employee = Employee.where(id: params[:id]).first
-    @employee.build_user
+    #@employee.build_user
     if @employee.blank?
       return redirect_to employees_path, error: "Specified employee is not found"
     end
   end
-  
   def update
+  #debugger
     @employee = Employee.where(id: params[:id]).first
     if @employee.blank?
       return redirect_to employees_path, error: "Specified employee is not found"
@@ -67,16 +67,13 @@ class EmployeesController < ApplicationController
       return redirect_to employees_path, error: "Specified employee is not found"
     end
     #if @employee.projects is blank?
-    if (@employee.projects.blank?)
-      if @employee.destroy
-        return redirect_to employees_path, notice: "employee destroyed successfully"
-      else
-        return redirect_to employees_path, notice: "employee could not destroyed" 
-      end
+     
+    if @employee.destroy
+      return redirect_to employees_path, notice: "employee destroyed successfully"
     else
-      #Redirect to “employee list” page with the error message “Employee could not destroyed ”
       return redirect_to employees_path, notice: "employee could not destroyed" 
-    end  
+    end
+     
   end
 
   #####################

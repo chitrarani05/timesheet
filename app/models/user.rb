@@ -29,11 +29,12 @@ class User < ActiveRecord::Base
   ###############
   ## Validations
   ###############
+   
   validates :name,
-  uniqueness: {
-    case_sensitive: false
-  } 
-  
+            presence: true,
+            uniqueness: {:case_sensitive => false}, 
+            format: { with: /^[a-zA-Z\s]*$/, message: "must be character and space" }
+            
   #################
   ## Class Methods
   #################
