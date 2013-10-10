@@ -1,36 +1,36 @@
 <%= form_for(@client) do |f| %>
-<div class="CSSTableGenerator" >
-  <table>
-    <tr>
-      <td>
-        <%= f.label :name %>
-      </td>
-      <td>
-        <%= f.text_field :name %>&nbsp;
-        <%# show the errors on name if present %>
-        <% if @client.errors.present? && @client.errors[:name].present? %> 
-          <%= @client.errors[:name].join(", ") %>
-        <% end %> 
-      </td>
-    </tr>
-    <tr><td colspan="2">&nbsp;</td></tr>
-    <tr>
-      <td>
-        <%= f.label :code %>
-      </td>
-      <td>
-        <%= f.text_field :code %>&nbsp;
-        <%# show the errors on code if present %>
-        <% if @client.errors.present? && @client.errors[:code].present? %>
-          <%= @client.errors[:code].join(", ") %>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <%= f.submit %>
-      </td>
-    </tr>
-  </table>
-</div>  
+  <div class="CSSTableGenerator" >
+    <table>
+      <tr>
+        <td>
+          <%= f.label :name %>
+        </td>
+        <td>
+          <%= f.text_field :name %>&nbsp;
+          <%# show the errors on name if present %>
+          <% if @client.errors.present? && @client.errors[:name].present? %>
+            <%= @client.errors[:name].join(", ") %>
+          <% end %>
+        </td>
+      </tr>
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr>
+        <td>
+          <%= f.label :code %>
+        </td>
+        <td>
+          <%= f.text_field :code %>&nbsp;
+          <%# show the errors on code if present %>
+          <% if @client.errors.present? && @client.errors[:code].present? %>
+            <%= @client.errors[:code].join(", ") %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <%= f.submit %>
+        </td>
+      </tr>
+    </table>
+  </div>
 <% end %>  

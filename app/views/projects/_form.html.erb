@@ -7,9 +7,9 @@
       </td>
       <td>
         <%= f.text_field :name %>&nbsp;
-        <% if @project.errors.present? && @project.errors[:name].present? %> 
+        <% if @project.errors.present? && @project.errors[:name].present? %>
           <%= @project.errors[:name].join(", ") %>
-        <% end %> 
+        <% end %>
       </td>
     </tr>
     <tr><td colspan="2">&nbsp;</td></tr>
@@ -31,7 +31,7 @@
         <%= f.label :client %>
       </td>
       <td>
-        <%= f.select(:client_id, Client.find(:all).collect{ |u| [u.name, u.id] }, prompt: 'select client') %>&nbsp; 
+        <%= f.select(:client_id, Client.find(:all).collect{ |u| [u.name, u.id] }, prompt: 'select client') %>&nbsp;
         <% if @project.errors.present? && @project.errors[:client_id].present? %>
           <%= @project.errors[:client_id].join(", ") %>
         <% end %>
@@ -43,5 +43,5 @@
       </td>
     </tr>
   </table>
-</div>  
+</div>
 <% end %>  

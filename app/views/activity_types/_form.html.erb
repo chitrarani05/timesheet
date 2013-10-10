@@ -1,24 +1,23 @@
 <%= form_for(@activity_type) do |f| %>
-<div class="CSSTableGenerator" >
-  <table>
-    <tr>
-      <td>
-        <%= f.label :name %>
-      </td>
-      <td>
-        <%= f.text_field :name %>&nbsp;
-        <% if @activity_type.errors.present? && @activity_type.errors[:name].present? %> 
-          <%= @activity_type.errors[:name].join(", ") %>
-        <% end %> 
-      </td>
-    </tr>
-    <tr><td colspan="2">&nbsp;</td></tr>
-    <tr>
-      <td colspan="2">
-        <%= f.submit %>
-      </td>
-    </tr>
-  </table>
-</div>  
+  <div class="CSSTableGenerator" >
+    <table>
+      <tr>
+        <td>
+          <%= f.label :name %>
+        </td>
+        <td>
+          <%= f.text_field :name %>&nbsp;
+          <% if @activity_type.errors.present? && @activity_type.errors[:name].present? %>
+            <%= @activity_type.errors[:name].join(", ") %>
+          <% end %>
+        </td>
+      </tr>
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr>
+        <td colspan="2">
+          <%= f.submit %>
+        </td>
+      </tr>
+    </table>
+  </div>
 <% end %>  
-

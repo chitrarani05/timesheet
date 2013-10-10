@@ -9,15 +9,16 @@ class Client < ActiveRecord::Base
   ## Associations
   ################
   has_many :projects
+
   #######################
   ## Attribute Accessors
   #######################
   attr_accessible :name, :code
-  
+
   ###############
   ## Validations
   ###############
-  validates :name, presence: true, uniqueness: { case_sensitive: false} , 
+  validates :name, presence: true, uniqueness: { case_sensitive: false} ,
     :format => { with: /^[a-zA-Z\s]*$/, message: "must be character and space" }
   validates :code, presence: true, uniqueness: { case_sensitive: false} ,
     :format => { with: /^[a-zA-Z0-9]*$/, message: "must be alphanumeric" }

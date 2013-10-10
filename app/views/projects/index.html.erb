@@ -1,28 +1,27 @@
 <h1> Projects Management </h1>
 <div class="CSSTableGenerator" >
-<table cellspacing="5" cellpadding="5">
-  <tr>
-    <td align = "left">  Name </td>
-    <td align = "left"> Code </td>
-    <td align = "left"> Client </td>
-    <td colspan="3", align = "left"> Actions </td>
-  </tr>  
-  <% if @projects.present? %>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %> </td>
-        <td><%= project.code %> </td>
-        <td><%= project.client.name %> &nbsp;</td>
-        <td><%= link_to("Edit", edit_project_path(project.id)) %> </td> 
-        <td><%= link_to("Delete", project, confirm: 'Are you sure?', method: :delete) %> </td>
-      </tr>
+  <table cellspacing="5" cellpadding="5">
+    <tr>
+      <td align = "left">  Name </td>
+      <td align = "left"> Code </td>
+      <td align = "left"> Client </td>
+      <td colspan="3", align = "left"> Actions </td>
+    </tr>
+    <% if @projects.present? %>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= project.name %> </td>
+          <td><%= project.code %> </td>
+          <td><%= project.client.name %> &nbsp;</td>
+          <td><%= link_to("Edit", edit_project_path(project.id)) %> </td>
+          <td><%= link_to("Delete", project, confirm: 'Are you sure?', method: :delete) %> </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><td colspan="4"> "No project found" </td></tr>
     <% end %>
-  <% else %>
-    <tr><td colspan="4"> "No project found" </td></tr>
-  <% end %> 
- 
-<table>
+
+  <table>
 </div>
 <%= link_to("New Project", new_project_path) %><br />
 <%= link_to("Back", root_path) %>
-

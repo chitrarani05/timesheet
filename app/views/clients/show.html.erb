@@ -7,29 +7,29 @@
   <%= link_to("Delete", @client, confirm: 'Are you sure?', method: :delete) %> </td> &nbsp;&nbsp;
 <% end %>
 <div class="CSSTableGenerator" >
-<table >
-  <tr>
-    <td><b>Name:</b></td>&nbsp;
-    <td><%= @client.name %></td>
-  </tr>
-  <tr><td colspan="2">&nbsp;</td></tr>
-  <tr>
-    <td><b>Code:</b></td>&nbsp;
-    <td><%= @client.code %></td>
-  </tr>
-  <tr><td colspan="2">&nbsp;</td></tr>
-  <tr>
-    <td valign=top><b>Project:</b></td>&nbsp;
-    <td>
-      <% if @client.projects.blank? %>
-          no project yet
-      <% else %>
-        <% @client.projects.each do |project| %>
-          <%= project.name %><br>  
+  <table >
+    <tr>
+      <td><b>Name:</b></td>&nbsp;
+      <td><%= @client.name %></td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td><b>Code:</b></td>&nbsp;
+      <td><%= @client.code %></td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td valign=top><b>Project:</b></td>&nbsp;
+      <td>
+        <% if @client.projects.blank? %>
+            no projects yet
+        <% else %>
+          <% @client.projects.each do |project| %>
+            <%= project.name %><br/>
+          <% end %>
         <% end %>
-      <% end %>
-    </td>    
-  </tr>
-  <tr><td colspan="2">&nbsp;</td></tr>
-</table>    
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+  </table>
 </div>

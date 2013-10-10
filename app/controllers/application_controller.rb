@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   ###########
   protect_from_forgery
   before_filter :authenticate_user!
+
   ############
-  
   ## Requires
   ############
   ############
@@ -21,8 +21,10 @@ class ApplicationController < ActionController::Base
   ## Protected Methods
   #####################
   protected
+
   ###################
   ## Private Methods
   ###################
   private
+
 end

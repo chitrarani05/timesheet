@@ -10,13 +10,13 @@ TimesheetManagement::Application.routes.draw do
   devise_scope :user do
     put "/confirm" => "confirmations#confirm"
   end
-  resources :employees
+  resources :employees, except: ["show"]
   resources :clients
-  resources :projects, except: "show"
-  resources :activity_types, except: "show"
-  
-  
-  
+  resources :projects, except: ["show"]
+  resources :activity_types, except: ["show"]
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -56,7 +56,7 @@ TimesheetManagement::Application.routes.draw do
   #       get 'recent', :on => :collection
   #     end
   #   end
-  
+
 
 
   # Sample resource route within a namespace:

@@ -16,12 +16,12 @@ class ClientsController < ApplicationController
   def index
     @clients = Client.all
   end
-  
+
   #blank object to show the form to get the new client
   def new
     @client = Client.new
   end
-  
+
   #actually create the new client
   def create
     #create the object of client and assign the attributes in the request
@@ -33,10 +33,10 @@ class ClientsController < ApplicationController
     else
       #if saved, render the form with error messages
       return render action: "new"
-    end    
+    end
   end
-  
-  def show 
+
+  def show
     #find the client from the Model: Client where id of the client is equal id in the params and assign it to variable “@client”
     @client = Client.where(id: params[:id]).first
     #if @client is blank
@@ -45,13 +45,14 @@ class ClientsController < ApplicationController
       return redirect_to clients_path, error: "Specified client is not found"
     end
   end
+
   def edit
     @client = Client.where(id: params[:id]).first
     if @client.blank?
       return redirect_to clients_path, error: "Specified client is not found"
     end
   end
-  
+
   def update
     @client = Client.where(id: params[:id]).first
     if @client.blank?
@@ -63,7 +64,7 @@ class ClientsController < ApplicationController
       return render action: "edit"
     end
   end
-  
+
   def destroy
     #find the client from the Model: Client where id of the client is equal id in the params and assign it to variable “@client”
     @client = Client.where(id: params[:id]).first
@@ -75,12 +76,12 @@ class ClientsController < ApplicationController
       if @client.destroy
         return redirect_to clients_path, notice: "client destroyed successfully"
       else
-        return redirect_to clients_path, notice: "client could not destroyed" 
+        return redirect_to clients_path, notice: "client could not destroyed"
       end
     else
       #Redirect to “client list” page with the error message “Client could not destroyed ”
-      return redirect_to clients_path, notice: "client could not destroyed" 
-    end  
+      return redirect_to clients_path, notice: "client could not destroyed"
+    end
   end
 
   #####################
@@ -93,7 +94,4 @@ class ClientsController < ApplicationController
   ###################
   private
 
-end               
-  
-  
-  
+end

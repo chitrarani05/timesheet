@@ -1,27 +1,27 @@
 <h1> Activity Types Management </h1>
 <div class="CSSTableGenerator" >
-<table cellspacing="5" cellpadding="5">
-  <tr>
-    <td align = "left">  Name </td>
-    <td colspan="2", align = "left"> Actions </td>
-  </tr>
-   
-<% if @activity_types.present? %>
-  <% @activity_types.each do |activity_type| %>
+  <table cellspacing="5" cellpadding="5">
     <tr>
-      <td><%= activity_type.name %> </td>
-      <td>
-        <%= link_to("Edit", edit_activity_type_path(activity_type.id)) %>
-        &nbsp;|&nbsp;
-        <%= link_to("Delete", activity_type, confirm: 'Are you sure?', method: :delete) %> 
-      </td>
+      <td align = "left">  Name </td>
+      <td align = "left"> Actions </td>
     </tr>
-  <% end %>
-<% else %>
-  <tr><td colspan="2"> "No activity type found" </td></tr>
-<% end %> 
-   
-<table>
-<%= link_to("New Activity Type", new_activity_type_path) %><br />
-<%= link_to("Back", root_path) %>
+
+    <% if @activity_types.present? %>
+      <% @activity_types.each do |activity_type| %>
+        <tr>
+          <td><%= activity_type.name %> </td>
+          <td>
+            <%= link_to("Edit", edit_activity_type_path(activity_type.id)) %>
+            &nbsp;|&nbsp;
+            <%= link_to("Delete", activity_type, confirm: 'Are you sure?', method: :delete) %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><td colspan="2"> "No activity type found" </td></tr>
+    <% end %>
+
+  <table>
+  <%= link_to("New Activity Type", new_activity_type_path) %><br />
+  <%= link_to("Back", root_path) %>
 </div>
