@@ -60,12 +60,14 @@ class ActivityTypesController < ApplicationController
     if @activity_type.update_attributes(params[:activity_type])
       #redirect to Activity Type list page with success message
       return redirect_to activity_types_path, notice: "Activity Type updated successfully"
+    #else  
     else
-      #else, render the action "edit"
+      #return and render the action "edit"
       return render action: "edit"
     end
   end
   
+  #destroy the activity type
   def destroy
     #find the activity_type from the Model: ActivityType where id of the activity type is equal id in the params and assign it to variable “@activity_type”
     @activity_type = ActivityType.where(id: params[:id]).first
@@ -74,12 +76,13 @@ class ActivityTypesController < ApplicationController
       #redirect to Activity Type list page with an error message
       return redirect_to activity_types_path, error: "Specified Activity Type is not found"
     end
-      #call the "destroy" method with object, if object is successfully deleted 
+    #call the "destroy" method with object, if object is successfully deleted 
     if @activity_type.destroy
       #redirect to Activity Type list page with an success message
       return redirect_to activity_types_path, notice: "Activity Type destroyed successfully"
+    #else  
     else
-      #redirect to Activity Type list page with an error message
+      #return and redirect to Activity Type list page with an success message
       return redirect_to activity_types_path, notice: "Activity Type could not destroyed" 
     end
   end

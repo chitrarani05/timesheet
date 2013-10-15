@@ -3,13 +3,21 @@ TimesheetManagement::Application.routes.draw do
   authenticated :user do
     root :to => 'home#index', :as => :authenticated_root
   end
-  root :to => redirect('/users/sign_in')
-
-  devise_for :users, :controllers => {:confirmations => 'confirmations'}
-
-  devise_scope :user do
+   
+  devise_for :users, :controllers => {:confirmations => 'confirmations'}, :skip => [:sessions]
+  devise_scope :user do 
+    get 'login' => 'devise/sessions#new', :as => :new_user_session
+    post 'login' => 'devise/sessions#create', :as => :user_session
+    delete 'login' => 'devise/sessions#destroy', :as => :destroy_user_session
+    get 'forgot-password' => 'devise/passwords#new', :as => :new_user_password
+    get 'confirmation-instruction' => 'confirmations#new', :as => :new_user_confirmation
     put "/confirm" => "confirmations#confirm"
   end
+  
+  #devise_scope :user do 
+    #put "/confirm" => "confirmations#confirm"
+  #end
+  
   resources :employees, except: ["show"]
   resources :clients
   resources :projects, except: ["show"]

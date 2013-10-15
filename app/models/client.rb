@@ -40,6 +40,9 @@ class Client < ActiveRecord::Base
   ######################
   ## Public Methods
   #####################
+  def self.getclient
+    Client.find(:all)
+  end  
   #####################
   ## Protected Methods
   #####################

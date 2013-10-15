@@ -1,6 +1,6 @@
 <%= form_for(@employee) do |f| %>
-  <div class="CSSTableGenerator" >
-    <table>
+  <div>
+    <table class="imagetable">
       <tr>
         <td>
           <%= f.label :firstname %>
@@ -37,15 +37,16 @@
         </td>
       </tr>
       <tr><td colspan="2">&nbsp;</td></tr>
-      <%# debugger %>
-      <% if params[:action] == "new" || params[:action] == "create" %>
-        <%= f.fields_for :user  do |user_fields| %>
+      <% flag = false %>
+      <% if params[:action] == "edit" || params[:action] == "update" %>
+        <% flag = true %>
+      <% end %>    
+      <%= f.fields_for :user  do |user_fields| %>
         <tr>
           <td>
             <%= user_fields.label :name %>
           </td>
           <td>
-          <%# debugger %>
             <%= user_fields.text_field :name %>&nbsp;
             <% if @employee.user.errors.present? && @employee.user.errors[:name].present? %>
               <%= @employee.user.errors[:name].join(", ") %>
@@ -58,13 +59,12 @@
             <%= user_fields.label :email %>
           </td>
           <td>
-            <%= user_fields.text_field :email %>&nbsp;
+            <%= user_fields.text_field :email, :readonly => flag %>&nbsp;
             <% if @employee.user.errors.present? && @employee.user.errors[:email].present? %>
               <%= @employee.user.errors[:email].join(", ") %>
             <% end %>
           </td>
         </tr>
-        <% end %>
       <% end %>
       <tr>
         <td colspan="5">

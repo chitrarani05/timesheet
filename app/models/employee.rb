@@ -8,7 +8,7 @@ class Employee < ActiveRecord::Base
   ################
   ## Associations
   ################
-  has_one :user, dependent: :destroy
+  has_one :user 
 
   ##############
   ## Call Backs

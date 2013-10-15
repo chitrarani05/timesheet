@@ -1,6 +1,6 @@
 <%= form_for(@project) do |f| %>
-<div class="CSSTableGenerator" >
-  <table>
+<div>
+  <table class="imagetable">
     <tr>
       <td>
         <%= f.label :name %>
@@ -19,7 +19,6 @@
       </td>
       <td>
         <%= f.text_field :code %>&nbsp;
-        <%# show the errors on code if present %>
         <% if @project.errors.present? && @project.errors[:code].present? %>
           <%= @project.errors[:code].join(", ") %>
         <% end %>
@@ -31,7 +30,7 @@
         <%= f.label :client %>
       </td>
       <td>
-        <%= f.select(:client_id, Client.find(:all).collect{ |u| [u.name, u.id] }, prompt: 'select client') %>&nbsp;
+        <%= f.select(:client_id, Client.getclient.collect{ |u| [u.name, u.id] }, prompt: 'select client') %>&nbsp; 
         <% if @project.errors.present? && @project.errors[:client_id].present? %>
           <%= @project.errors[:client_id].join(", ") %>
         <% end %>

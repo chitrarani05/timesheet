@@ -1,27 +1,19 @@
 <h1> Employees Management </h1>
-  <div class="CSSTableGenerator" >
-  <table cellspacing="5" cellpadding="5">
+<div>
+  <table class="imagetable">
     <tr>
-      <td align = "left"> First Name </td>
-      <td align = "left"> Last Name </td>
-      <td align = "left"> Employee Code </td>
-
-      <td colspan="2", align = "left"> Actions </td>
+      <th align = "left"> First Name </td>
+      <th align = "left"> Last Name </td>
+      <th align = "left"> Employee Code </td>
+      <th align = "left"> User Name </td>
+      <th align = "left"> Email </td>
+      <th colspan="2", align = "left"> Actions </td>
     </tr>
-  <% if @employees.present? %>
-    <% @employees.each do |employee| %>
-      <tr>
-        <td><%= employee.firstname %> </td>
-        <td><%= employee.lastname %> </td>
-        <td><%= employee.code %> </td>
-        <td><%= link_to("Edit", edit_employee_path(employee.id)) %> </td>
-        <td><%= link_to("Delete", employee, confirm: 'Are you sure?', method: :delete) %> </td>
-      </tr>
-    <% end %>
-  <% else %>
-    <tr><td colspan="4"> "No employee found" </td></tr>
-  <% end %>
-  <table>
+    <% if @employees.present? %>
+      <%= render partial: "employees/employee", collection: @employees %>
+    <% else %>
+      <tr><td colspan="4"> "No employee found" </td></tr>
+    <% end %> 
+  </table>
   <%= link_to("New Employee", new_employee_path) %><br />
-  <%= link_to("Back", root_path) %>
 </div>

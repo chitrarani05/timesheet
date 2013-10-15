@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Timesheet Management</title>
-  <%= stylesheet_link_tag :application, media: "all" %>
-  <%= javascript_include_tag :application %>
-  <%= csrf_meta_tags %>
-</head>
-<body class="body">
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <% if user_signed_in? %>
-    <div class="logout">
-      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-      <%= link_to 'Change password', edit_user_registration_path %>
-    </div>
-  <% end %>
-
-  <%= yield %>
-
-</body>
+  <head>
+    <title>Timesheet Management</title>
+    <%= stylesheet_link_tag :application, media: "all" %>
+    <%= javascript_include_tag :application %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class = "body">
+    <p class = "notice"><%= notice %></p>
+    <p class = "alert"><%= alert %></p>
+    <% if user_signed_in? %>
+      <div class = "logout">
+        <%= link_to 'Change password', edit_user_registration_path %>
+        <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> 
+      </div></br>
+      <div class = "home">
+        <h3><%= link_to "Clients Management", clients_path %> &nbsp;
+         <%= link_to "Activity Types Management", activity_types_path %>&nbsp;
+         <%= link_to "Projects Management", projects_path %> &nbsp;
+         <%= link_to "Employees Management",employees_path %>&nbsp;</h3>
+      </div>  
+    <% end %>
+    <%= yield %>
+  </body>
 </html>

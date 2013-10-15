@@ -1,0 +1,12 @@
+<tr>
+  <td><%= project.name %> </td>
+  <td><%= project.code %> </td>
+  <td><%= project.client.name %></td>
+  <td>
+    <%= link_to("Edit", edit_project_path(project.id)) %> 
+    &nbsp;|&nbsp;
+    <%= link_to("Delete", project, confirm: 'Are you sure?', method: :delete) %>
+  </td>
+</tr>
+ 
+
