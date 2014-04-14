@@ -1,3 +1,4 @@
+<%# debugger %>
 <%= form_for(@project) do |f| %>
 <div>
   <table class="imagetable">
@@ -23,9 +24,9 @@
           <%= @project.errors[:code].join(", ") %>
         <% end %>
       </td>
-      </tr>
-        <tr><td colspan="2">&nbsp;</td></tr>
-      <tr>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
       <td>
         <%= f.label :client %>
       </td>

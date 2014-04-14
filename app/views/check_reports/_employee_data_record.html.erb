@@ -1,0 +1,26 @@
+<tr>
+  <td>
+    <%= employee_data_record.client.name %>
+  </td>
+  <td>
+    <%= employee_data_record.project.name %>
+  </td>
+  <td>
+    <%= employee_data_record.activity_type.name %>
+  </td>
+  <td>
+    <%= employee_data_record.task %>
+  </td>
+  <td>
+    <%= employee_data_record.date %>
+  </td>
+  <td>
+    <%= employee_data_record.in_time.strftime("%H:%M") %>
+  </td>
+  <td>
+    <%= employee_data_record.out_time.strftime("%H:%M") %>
+  </td> 
+  <td>
+    <%= employee_data_record.remark %>
+  </td> 
+</tr>

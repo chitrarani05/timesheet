@@ -1,0 +1,5 @@
+<% if params[:client] != "" %>
+  $("#project").html(" <%=j select_tag("project", options_for_select(@projects), prompt: "Show all") %> ");
+<% else %>
+  $("#project").html(" <%=j select_tag("project", options_for_select(@projects), prompt: "Show all") %> ");
+<% end %>  

@@ -1,0 +1,83 @@
+ <h1> Reports </h1>
+<%= form_tag(reports_path, method: :get) do  %> 
+  <table id = "record" class = "imagetable">
+    <tr>
+      <th align = "left"> Status </th>
+      <th align = "left"> Client </th>
+      <th align = "left"> Projects </th>
+      <th align = "left"> Activity Type </th>
+      <th align = "left"> From </th>
+      <th align = "left"> To </th>
+    </tr> 
+    <%= render partial: "reports/report" %>
+    <tr>  
+      <td colspan="10", align = "center"><%= submit_tag "Find" %></td>
+    </tr> 
+    <% if params[:from].present? %>
+      <% if @record_froms.present? %>
+        <tr>
+          <th align = "left"> Client </th>
+          <th align = "left"> Project </th>
+          <th align = "left"> Activity Type </th>
+          <th align = "left"> Task </th>
+          <th align = "left"> Date </th> 
+          <th align = "left"> In Time </th>
+          <th align = "left"> Out Time </th>
+          <th align = "left"> Remark </th>
+          <th colspan="2", align = "left"> Action </th>
+        </tr>
+        <% date_arr = [] %>
+        <% @record_froms.each do |record| %>
+          <% date_arr << record.date %>
+        <% end %>  
+        <% date_arr = date_arr.uniq %> 
+        <% date_arr.each do |date| %>
+          <% @record = [] %>
+          <% @record_froms.each do |record| %>
+            <% if date == record.date %>
+              <% @record << record %>
+            <% end %>  
+          <% end %>
+          <% @record = @record.sort_by(&:in_time) %>
+          <%= render partial: "reports/data_record", collection: @record %> 
+          <tr> 
+            <td id= "link_id_<%= "#{@record[0].date}" %>" colspan="10" align = "center">
+              <% if (@record[0].status == "new" || @record[0].status == "reject") %> 
+                <% if @record[0].status == "reject" %>
+                  <h4><%= "this tasksheet has been rejected because the reason is ->" %>
+                      <b><font color="red"><%= @record[0].reason %></font></b>
+                  </h4> 
+                  <%= link_to "Submit Again :)", "#", onclick: "submit_for_approval('#{date}', '#{current_user.employee_id}', '#{params[:status]}');return false;" %>
+                <% else %>             
+                  <%= link_to "Submit for approval for date #{@record[0].date}", "#", onclick: "submit_for_approval('#{date}', '#{current_user.employee_id}', '#{params[:status]}');return false;" %> 
+                <% end %>  
+              <% end %>    
+            </td>
+          </tr> 
+        <% end %> 
+        <tr> 
+          <% from = params[:from]["year"] +'/'+params[:from]["month"] +'/'+ params[:from]["day"] %>
+          <% to = params[:to]["year"] +'/'+params[:to]["month"] +'/'+ params[:to]["day"] %>
+          <td id = "link" colspan="10", align = "left">
+          <% flag = false %> 
+          <% @record_froms.each do |record| %>
+            <% if (record.status == "new" || record.status == "reject") %>
+              <% flag = true %>
+            <% end %>
+          <% end %>  
+          <% if flag == true %> 
+            <% @arr = [] %>
+            <% @arr << from %>
+            <% @arr << to %>
+              <%= link_to "All submit for approval from date #{from} to #{to}", all_submit_path(:dates => @arr,:status => "#{params[:status]}" ), method: :post%> 
+          <% else %>
+            <%= "All submitted" %>
+          <% end %> 
+          </td>
+        </tr>  
+      <% else %>
+        <tr><td colspan="8"> "No Record found" </td></tr>
+      <% end %>
+    <% end %>  
+  </table> 
+<% end %>

@@ -14,12 +14,23 @@
         <%= link_to 'Change password', edit_user_registration_path %>
         <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %> 
       </div></br>
-      <div class = "home">
-        <h3><%= link_to "Clients Management", clients_path %> &nbsp;
-         <%= link_to "Activity Types Management", activity_types_path %>&nbsp;
-         <%= link_to "Projects Management", projects_path %> &nbsp;
-         <%= link_to "Employees Management",employees_path %>&nbsp;</h3>
-      </div>  
+      <div>
+      <table>
+        <% if current_user.name == "admin" %>
+          <th>
+            <td><h3><%= link_to "Clients Management", clients_path %></h3></td>
+            <td><h3><%= link_to "Activity Types Management", activity_types_path %></h3></td>
+            <td><h3><%= link_to "Projects Management", projects_path %></h3></td> 
+            <td><h3><%= link_to "Employees Management", employees_path %></h3></td>
+            <td><h3><%= link_to "Tasksheet Module", tasksheets_path %></h3></td>
+            <td><h3><%= link_to "Check Reports", check_reports_path %></h3></td>
+          </th> 
+        <% else %>
+          <td><h3><%= link_to "Tasksheet Module", tasksheets_path %>&nbsp;&nbsp;&nbsp;</h3></td> 
+          <td><h3><%= link_to "Reports", reports_path %>&nbsp;&nbsp;&nbsp;</h3></td>
+        <% end %>  
+      </table> 
+      </div>
     <% end %>
     <%= yield %>
   </body>

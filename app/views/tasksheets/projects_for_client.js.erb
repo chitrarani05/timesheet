@@ -1,0 +1,2 @@
+$("#project_<%= "#{params[:id]}" %>").html(" <%=j select_tag("project[#{@key}]", options_for_select(@projects), prompt: "Select Project") %> ");
+ 

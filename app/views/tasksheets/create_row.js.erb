@@ -1,0 +1,4 @@
+num = <%= @key %> - 1;
+$("#fdelete_"+num).show();
+$("#row").append("<%=j render(partial: 'tasksheets/tasksheet', locals: {tasksheet: @tasksheet, key: @key}) %>");
+$("#fdelete_"+<%= "#{@key}" %>).hide();

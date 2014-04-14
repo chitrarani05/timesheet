@@ -9,7 +9,7 @@ class Employee < ActiveRecord::Base
   ## Associations
   ################
   has_one :user 
-
+  
   ##############
   ## Call Backs
   ##############
@@ -45,6 +45,10 @@ class Employee < ActiveRecord::Base
   ######################
   ## Public Methods
   #####################
+  def self.getemployee
+    Employee.all
+  end
+  
   #####################
   ## Protected Methods
   #####################

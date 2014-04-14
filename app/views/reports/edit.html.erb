@@ -1,0 +1,20 @@
+<h1> Edit the record </h1>
+<%= form_tag(report_path, method: :put) do  %> 
+  <table id = "record" class = "imagetable">
+    <tr>
+      <th align = "left"> Client </th>
+      <th align = "left"> Project </th>
+      <th align = "left"> Activity Type </th>
+      <th align = "left"> Task </th>
+      <th align = "left"> Date </th> 
+      <th align = "left"> In Time </th>
+      <th align = "left"> Out Time </th>
+      <th align = "left"> Remark </th>
+    </tr> 
+      <%= render partial: "reports/report_edit" %>
+    <tr>
+      <td align = "center" colspan="8"><%= submit_tag "Update" %></td>
+    </tr> 
+  </table>
+<% end %>
+<%= link_to("Back", reports_path) %>

@@ -1,0 +1,60 @@
+<tr>
+  <td>
+    <%= select_tag "client", options_for_select(Client.getclient.collect{ |u| [u.name, u.id] }, selected: @record.client_id), prompt: "Select Client",
+          data: {
+            remote: true,
+            url: url_for(action: :project_for_client)
+          }, style: "width:165px;" %> 
+    <% if @record.errors.present? && @record.errors[:client].present? %>
+      <%= @record.errors[:client].join(", ") %>
+    <% end %>                      
+  </td>
+  <td>
+    <% if @record.client_id  %>
+      <%= select_tag "project", options_for_select(Project.where(client_id: @record.client_id).collect{ |u| [u.name, u.id] }, selected: @record.project_id), prompt: "select project", style: "width:165px;" %> 
+      <% if @record.errors.present? && @record.errors[:project].present? %>
+      <%= @record.errors[:project].join(", ") %>
+      <% end %> 
+    <% else %>
+      <%= select_tag "project", "[]", prompt: "Select PROJECT", style: "width:165px;" %>
+    <% end %> 
+  </td>
+  <td>
+    <%= select_tag "activity_type", options_for_select(ActivityType.getactivity_type.collect{ |u| [u.name, u.id] }, selected: @record.activity_type_id), prompt: "Select Activity Type", style: "width: 165px;" %> 
+    <% if @record.errors.present? && @record.errors[:activity_type].present? %>
+      <%= @record.errors[:activity_type].join(", ") %>
+    <% end %>
+  </td>
+  <td>
+    <%= text_field_tag "task", @record.task %>
+    <% if @record.errors.present? && @record.errors[:task].present? %>
+      <%= @record.errors[:task].join(", ") %>
+    <% end %>
+  </td>
+  <td>
+    <% if @record.date != nil %>
+      <%= select_date @record.date, prefix: "date" %>
+    <% else %>
+      <%= select_date Date.today, prefix: "date" %>
+    <% end %>  
+    <% if @record.errors.present? && @record.errors[:date].present? %>
+      <%= @record.errors[:date].join(", ") %>
+    <% end %>
+  </td>
+  <td>
+    <%= select_time @record.in_time, prefix: "in_time", minute_step: 15 %>
+    <% if @record.errors.present? && @record.errors[:in_time].present? %>
+      <%= @record.errors[:in_time].join(", ") %>
+    <% end %>
+  </td>
+  <td>
+    <%= select_time @record.out_time, prefix: "out_time", minute_step: 15 %> 
+    <% if @record.errors.present? && @record.errors[:out_time].present? %>
+      <%= @record.errors[:out_time].join(", ") %>
+    <% end %>    
+  </td>
+  <td>
+    <%= text_field_tag "remark", @record.remark %>
+  </td>
+</tr>
+  

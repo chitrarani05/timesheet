@@ -49,6 +49,7 @@ class ActivityTypesController < ApplicationController
   
   #update the existing data
   def update
+  #debugger
     #find the activity type from the Model: ActivityType where id of the activity type is equal id in the params and assign it to variable “@activity_type”
     @activity_type = ActivityType.where(id: params[:id]).first
     #if @activity_type is blank
@@ -60,7 +61,7 @@ class ActivityTypesController < ApplicationController
     if @activity_type.update_attributes(params[:activity_type])
       #redirect to Activity Type list page with success message
       return redirect_to activity_types_path, notice: "Activity Type updated successfully"
-    #else  
+    #else 
     else
       #return and render the action "edit"
       return render action: "edit"

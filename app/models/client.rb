@@ -9,7 +9,8 @@ class Client < ActiveRecord::Base
   ## Associations
   ################
   has_many :projects
-
+  has_many :tasksheet
+  
   #######################
   ## Attribute Accessors
   #######################
@@ -41,13 +42,20 @@ class Client < ActiveRecord::Base
   ## Public Methods
   #####################
   def self.getclient
-    Client.find(:all)
-  end  
+    arr = []
+    obj = Client.all 
+    obj.each do |client|
+      if client.projects.present?
+        arr << client
+      end
+    end
+    arr    
+  end    
+  
   #####################
   ## Protected Methods
   #####################
   protected
-
   #####################
   ## Private Methods
   #####################

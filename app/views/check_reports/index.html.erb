@@ -1,0 +1,89 @@
+<h2> Check Reports as per the employees </h2>
+<%= form_tag(check_reports_path, method: :get) do  %> 
+  <table id = "record" class = "imagetable">
+    <tr>
+      <th align = "left"> Status </th>
+      <th align = "left"> Employee </th>
+      <th align = "left"> Client </th>
+      <th align = "left"> Projects </th>
+      <th align = "left"> Activity Type </th>
+      <th align = "left"> From </th>
+      <th align = "left"> To </th>
+    </tr> 
+    <%= render partial: "check_reports/check_report" %>
+    <tr>  
+      <td colspan="8", align = "center"><%= submit_tag "check" %></td>
+    </tr>
+    <% if params[:from].present? %>
+      <% if @employee_data.present? %>
+        <tr>
+          <th align = "left"> Client </th>
+          <th align = "left"> Project </th>
+          <th align = "left"> Activity Type </th>
+          <th align = "left"> Task </th>
+          <th align = "left"> Date </th> 
+          <th align = "left"> In Time </th>
+          <th align = "left"> Out Time </th>
+          <th align = "left"> Remark </th>
+        </tr>
+        <% date_arr = [] %>
+        <% ids_arr = [] %>
+        <% @employee_data.each do |employee| %>
+          <% date_arr << employee.date %>
+          <% ids_arr << employee.employee_id %>
+        <% end %>
+        <%# debugger %>
+        <% date_arr = date_arr.uniq %>
+        <% ids_arr = ids_arr.uniq %>
+        <% ids_arr.each do |id_arr| %>
+          <tr> 
+            <td colspan="8", align = "left">
+              <% @employee = Employee.where(id: id_arr).first %>
+              <b><font color="MediumVioletRed"><%= "This record is from employee #{@employee.firstname}" %></font></b>
+            </td>
+          </tr>    
+          <% date_arr.each do |date| %>
+            <% @employee = [] %>
+            <% @employee_data.each do |employee_data| %>
+              <% if (date == employee_data.date && id_arr == employee_data.employee_id) %>
+                <% @employee << employee_data %>
+              <% end %>
+            <% end %>       
+            <%= render partial: "check_reports/employee_data_record", collection: @employee %> 
+            <%# debugger %> 
+            <% if @employee.present? %>
+              <% if ((date == @employee[0].date) && (id_arr == @employee[0].employee_id)) %> 
+                <tr id = <%= "#{date}" %>_<%= "#{id_arr}" %>> 
+                  <td colspan="10" align = "center"> 
+                    <% if params[:status] == "submit" %> 
+                      <%= link_to "Accept for #{date}", "#", id: "accept_#{date}_#{id_arr}", onclick: "accept_data('#{date}', '#{id_arr}');return false;" %>
+                    &nbsp;&nbsp;
+                      <%= link_to "reject for #{date}", "#", id: "reject_#{date}_#{id_arr}", onclick: "reject_data('#{date}', '#{id_arr}');return false;"  %>
+                    <% end %>  
+                  </td>
+                </tr> 
+              <% end %>  
+            <% end %>            
+          <% end %> 
+        <% end %>  
+        <% if params[:status] == "submit" %>  
+          <tr> 
+            <td colspan="10", align = "left"> 
+              <% @ids = [] %>
+              <% if params[:employee] == "" %> 
+                <% @ids = ids_arr %>
+              <% else %>
+                <% @ids = params[:employee] %>
+              <% end %>  
+                <%= link_to "All Accept", accept_all_data_path(:ids => ids_arr), method: :post %>
+                &nbsp;&nbsp;
+                <%= link_to "All reject", new_check_report_path(:ids => @ids), method: :get %> 
+            </td>
+          </tr> 
+        <% end %>      
+      <% else %>
+        <tr><td colspan="8"> "No data found" </td></tr>
+      <% end %> 
+    <% end %>   
+  </table>
+<% end %>    

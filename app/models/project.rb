@@ -9,7 +9,8 @@ class Project < ActiveRecord::Base
   ## Associations
   ################
   belongs_to :client
-
+  has_many :tasksheet
+  
   #######################
   ## Attribute Accessors
   #######################
@@ -45,6 +46,10 @@ class Project < ActiveRecord::Base
   ######################
   ## Public Methods
   #####################
+  def self.getproject
+    Project.all   
+  end   
+  
   #####################
   ## Protected Methods
   #####################

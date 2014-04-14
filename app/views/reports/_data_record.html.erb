@@ -1,0 +1,32 @@
+<tr id="row_id_<%= data_record.date %>">
+  <td>
+    <%= data_record.client.name %>
+  </td>
+  <td>
+    <%= data_record.project.name %>
+  </td>
+  <td>
+    <%= data_record.activity_type.name %>
+  </td>
+  <td>
+    <%= data_record.task %>
+  </td>
+  <td>
+    <%= data_record.date %>
+  </td>
+  <td>
+    <%= data_record.in_time.strftime("%H:%M") %>
+  </td>
+  <td>
+    <%= data_record.out_time.strftime("%H:%M") %>
+  </td> 
+  <td>
+    <%= data_record.remark %>
+  </td>
+  <% if (data_record.status == "new" || data_record.status == "reject") %>
+    <td class = "link_hide_<%= data_record.date %>">
+      <%= link_to "Edit", edit_report_path(data_record.id)   %>
+      <%= link_to "Delete", data_record, method: :delete, confirm: 'Are you sure?' %>
+    </td> 
+  <% end %>      
+</tr>

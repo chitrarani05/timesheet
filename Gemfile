@@ -22,7 +22,7 @@ end
 
 gem 'jquery-rails', '3.0.4'
 gem 'devise', '3.0'
-
+gem 'will_paginate'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

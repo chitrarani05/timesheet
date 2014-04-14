@@ -8,7 +8,7 @@
       <th colspan="2", align = "left"> Actions </td>
     </tr>
     <% if @projects.present? %>
-       <%= render partial: "projects/project", :collection => @projects %>
+       <%= render partial: "projects/project", collection: @projects %>
     <% else %>
       <tr><td colspan="4"> "No project found" </td></tr>
     <% end %>

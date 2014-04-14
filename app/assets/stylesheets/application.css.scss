@@ -13,8 +13,7 @@
  */
  
 .body {
-background-image: -moz-linear-gradient(left, #FFF0FF 0%, #ACEFD9 100%);
-
+background-color: #b5cfd2;  
 }
 
 .logout {
@@ -51,7 +50,7 @@ float: right;
 	  border-color: #999999;
   }
   td {
-	  background:#b5cfd2; 
+	  background:#c8cfd2; 
 	  border-width: 1px;
 	  padding: 8px;
 	  border-style: solid;
@@ -59,6 +58,10 @@ float: right;
   }
 }  
 
-
+textarea#reason {
+  width: 550px;
+  height: 80px;
+}
+ 
  
 

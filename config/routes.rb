@@ -14,17 +14,34 @@ TimesheetManagement::Application.routes.draw do
     put "/confirm" => "confirmations#confirm"
   end
   
-  #devise_scope :user do 
-    #put "/confirm" => "confirmations#confirm"
-  #end
+  devise_scope :user do 
+    put "/confirm" => "confirmations#confirm"
+  end
   
   resources :employees, except: ["show"]
   resources :clients
   resources :projects, except: ["show"]
   resources :activity_types, except: ["show"]
+  resources :tasksheets 
+  get "/projects_for_client" => "tasksheets#projects_for_client"
+  
+  post "tasksheets/create_row" => "tasksheets#create_row", as: "create_row"
 
-
-
+  resources :reports 
+  get "/project_for_client" => "reports#project_for_client"
+  post "reports/submit_for_approval" => "reports#submit_for_approval", as: "submit_for_approval"
+  post "reports/all_submit" => "reports#all_submit", as: "all_submit"
+  
+  resources :check_reports
+  get "/project_for_client_admin" => "check_reports#project_for_client_admin"
+  post "check_reports/accept_data" => "check_reports#accept_data", as: "accept_data"
+  post "check_reports/reject_data" => "check_reports#reject_data", as: "reject_data"
+  post "check_reports/reason_for_rejection" => "check_reports#reason_for_rejection", as: "reason_for_rejection"
+  post "check_reports/accept_all_data" => "check_reports#accept_all_data", as: "accept_all_data"
+  post "check_reports/reject_all_data" => "check_reports#reject_all_data", as: "reject_all_data"
+  
+  #match '/check_reports/accept_data' => 'check_reports#accept_data', :via => :get
+  #get "check_reports/reject_data/:id" => "check_reports#reject_data", as: "reject_data"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

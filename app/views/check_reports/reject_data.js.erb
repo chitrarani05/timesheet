@@ -1,0 +1,6 @@
+$("#accept_<%= "#{params[:my_param]}" %>_<%= "#{params[:ids]}" %>").hide(); 
+$("#<%= "#{params[:my_param]}" %>_<%= "#{params[:ids]}" %>").html("Reason for rejection <%=j text_area_tag "reason" %> ");
+$("#<%= "#{params[:my_param]}" %>_<%= "#{params[:ids]}" %>").append(" <%=j submit_tag "Send", onclick: "reason_for_rejection('#{params[:my_param]}', '#{params[:ids]}');return false;" %> ");
+
+ 
+ 

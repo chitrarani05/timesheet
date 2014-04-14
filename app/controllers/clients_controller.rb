@@ -5,6 +5,8 @@ class ClientsController < ApplicationController
   ############
   ## Requires
   ############
+  require 'will_paginate/array'
+  
   #############
   ## Constants
   #############
@@ -14,7 +16,7 @@ class ClientsController < ApplicationController
 
   #show the list of clients
   def index
-    @clients = Client.all
+    @clients = Client.all.paginate(page: params[:page], per_page: 4)
   end
 
   #blank object to show the form to get the new client
@@ -26,13 +28,14 @@ class ClientsController < ApplicationController
   def create
     #create the object of client and assign the attributes in the request
     @client = Client.new(params[:client])
+    
     #save the client
     if @client.save
       #if saved, return and redirect to client show page with success message
       return redirect_to client_path(@client), notice: "client created successfuly"
     else
-      #if saved, render the form with error messages
-      return render action: "new"
+      #if not saved, render the form with error messages
+      return render action: :new
     end
   end
 

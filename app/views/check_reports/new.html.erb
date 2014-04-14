@@ -1,0 +1,6 @@
+<h3>Reason for rejection</h3>
+<%= form_tag(check_reports_path(ids: params[:ids])) do  %>
+  <%= text_area_tag "reason" %>
+  <%= submit_tag "Send" %>
+<% end %>  
+ 

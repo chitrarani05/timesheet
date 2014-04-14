@@ -1,0 +1,38 @@
+<h1> Tasksheet </h1>
+  <%= form_tag(tasksheets_path) do  %>
+    <table id = "row" class = "imagetable">
+      <tr>
+        <th align = "left"> Client </th>
+        <th align = "left"> Projects </th>
+        <th align = "left"> Activity Type </th>
+        <th align = "left"> Task </th>
+        <th align = "left"> Date </th>
+        <th align = "left"> In Time </th>
+        <th align = "left"> Out Time </th>
+        <th colspan="2", align = "left"> Remarks </th>
+      </tr> 
+      <% key = 0 %>
+      <% if @tasksheet.present? %>
+        <%= render partial: "tasksheets/tasksheet", locals: {tasksheet: @tasksheet, key: 0} %>
+      <% elsif @tasksheets.present? %> 
+        <% @tasksheets.each_with_index do |tasksheet, index| %>
+          <%= render partial: "tasksheets/tasksheet", locals: {tasksheet: tasksheet, key: index} %> 
+        <% end %>
+        <% key = @tasksheets.size-1  %>
+        <%= hidden_field_tag "hidden", key %>
+        <% if key > 0 %>
+          <script type="text/javascript">
+           delete_link();
+          </script>
+        <% end %>
+        <% key = @tasksheets.size-1  %>
+      <% end %> 
+      <%= hidden_field_tag "hidden", key %>
+    </table>
+    <%= submit_tag "Save"  %>  
+  <% end %>
+  <p style="text-align:center"><%= link_to "Add Row", "#", id: "link1", onclick: "create_row();return false;" %></p>
+ 
+ 
+
+

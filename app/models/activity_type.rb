@@ -8,6 +8,8 @@ class ActivityType < ActiveRecord::Base
   ################
   ## Associations
   ################
+  has_many :tasksheet
+  
   #######################
   ## Attribute Accessors
   #######################
@@ -36,6 +38,10 @@ class ActivityType < ActiveRecord::Base
   ######################
   ## Public Methods
   #####################
+  def self.getactivity_type
+    ActivityType.all
+  end
+  
   #####################
   ## Protected Methods
   #####################

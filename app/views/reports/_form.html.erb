@@ -1,0 +1,20 @@
+<%= form_tag(report_path, method: :put) do  %> 
+  <div>
+    <table class="imagetable">
+      <tr>
+        <td><%= @record.client.name %></td>
+        <td><%= @record.project.name %></td>
+        <td><%= @record.activity_type.name %></td>
+        <td><%= @record.task %></td>
+        <td><%= @record.date %></td>
+        <td><%= @record.in_time.strftime("%H:%M") %></td>
+        <td><%= @record.out_time.strftime("%H:%M") %></td> 
+      </tr>
+      <tr>
+        <td colspan="7">
+        <%= submit_tag "Update" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>  

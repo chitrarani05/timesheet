@@ -1,76 +1,74 @@
 <%= form_for(@employee) do |f| %>
-  <div>
-    <table class="imagetable">
+  <table class="imagetable">
+    <tr>
+      <td>
+        <%= f.label :firstname %>
+      </td>
+      <td>
+        <%= f.text_field :firstname %>&nbsp;
+        <% if @employee.errors.present? && @employee.errors[:firstname].present? %>
+          <%= @employee.errors[:firstname].join(", ") %>
+        <% end %>
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td>
+        <%= f.label :lastname %>
+      </td>
+      <td>
+        <%= f.text_field :lastname %>&nbsp;
+        <% if @employee.errors.present? && @employee.errors[:lastname].present? %>
+          <%= @employee.errors[:lastname].join(", ") %>
+        <% end %>
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td>
+        <%= f.label :code %>
+      </td>
+      <td>
+        <%= f.text_field :code %>&nbsp;
+        <% if @employee.errors.present? && @employee.errors[:code].present? %>
+          <%= @employee.errors[:code].join(", ") %>
+        <% end %>
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <% flag = false %>
+    <% if params[:action] == "edit" || params[:action] == "update" %>
+      <% flag = true %>
+    <% end %>    
+    <%= f.fields_for :user  do |user_fields| %>
       <tr>
         <td>
-          <%= f.label :firstname %>
+          <%= user_fields.label :name %>
         </td>
         <td>
-          <%= f.text_field :firstname %>&nbsp;
-          <% if @employee.errors.present? && @employee.errors[:firstname].present? %>
-            <%= @employee.errors[:firstname].join(", ") %>
+          <%= user_fields.text_field :name %>&nbsp;
+          <% if @employee.user.errors.present? && @employee.user.errors[:name].present? %>
+            <%= @employee.user.errors[:name].join(", ") %>
           <% end %>
         </td>
       </tr>
       <tr><td colspan="2">&nbsp;</td></tr>
       <tr>
         <td>
-          <%= f.label :lastname %>
+          <%= user_fields.label :email %>
         </td>
         <td>
-          <%= f.text_field :lastname %>&nbsp;
-          <% if @employee.errors.present? && @employee.errors[:lastname].present? %>
-            <%= @employee.errors[:lastname].join(", ") %>
+          <%= user_fields.text_field :email, :readonly => flag %>&nbsp;
+          <% if @employee.user.errors.present? && @employee.user.errors[:email].present? %>
+            <%= @employee.user.errors[:email].join(", ") %>
           <% end %>
         </td>
       </tr>
-      <tr><td colspan="2">&nbsp;</td></tr>
-      <tr>
-        <td>
-          <%= f.label :code %>
-        </td>
-        <td>
-          <%= f.text_field :code %>&nbsp;
-          <% if @employee.errors.present? && @employee.errors[:code].present? %>
-            <%= @employee.errors[:code].join(", ") %>
-          <% end %>
-        </td>
-      </tr>
-      <tr><td colspan="2">&nbsp;</td></tr>
-      <% flag = false %>
-      <% if params[:action] == "edit" || params[:action] == "update" %>
-        <% flag = true %>
-      <% end %>    
-      <%= f.fields_for :user  do |user_fields| %>
-        <tr>
-          <td>
-            <%= user_fields.label :name %>
-          </td>
-          <td>
-            <%= user_fields.text_field :name %>&nbsp;
-            <% if @employee.user.errors.present? && @employee.user.errors[:name].present? %>
-              <%= @employee.user.errors[:name].join(", ") %>
-            <% end %>
-          </td>
-        </tr>
-        <tr><td colspan="2">&nbsp;</td></tr>
-        <tr>
-          <td>
-            <%= user_fields.label :email %>
-          </td>
-          <td>
-            <%= user_fields.text_field :email, :readonly => flag %>&nbsp;
-            <% if @employee.user.errors.present? && @employee.user.errors[:email].present? %>
-              <%= @employee.user.errors[:email].join(", ") %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-      <tr>
-        <td colspan="5">
-          <%= f.submit %>
-        </td>
-      </tr>
-    </table>
-  </div>
+    <% end %>
+    <tr>
+      <td colspan="5">
+        <%= f.submit %>
+      </td>
+    </tr>
+  </table>
 <% end %>  

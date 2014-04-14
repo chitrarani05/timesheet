@@ -24,8 +24,10 @@ class ProjectsController < ApplicationController
 
   #actually create the new project
   def create
+  #debugger
     #create the object of project and assign the attributes in the request
     @project = Project.new(params[:project])
+    #debugger
     #save the project
     if @project.save
       #if saved, redirect to index method with success message

@@ -1,0 +1,39 @@
+<tr id="row">
+  <td>
+    <%= select_tag "status", options_for_select([['new'], ['submit'], ['accept'], ['reject']], selected: params[:status]), style: "width: 165px;" %> 
+  </td>
+  <td>
+    <%= select_tag "client", options_for_select(Client.getclient.collect{ |u| [u.name, u.id] }, selected: params[:client].to_i), prompt: "Show all",
+        data: {
+          remote: true,
+          url: url_for(action: :project_for_client)
+        }, style: "width:165px;" %>                                 
+  </td>
+  <td>
+    <% if !params[:client].present? %>
+      <%= select_tag "project", options_for_select(Project.getproject.collect{ |u| [u.name, u.id] }, selected: params[:project].to_i), prompt: "Show all", style: "width:165px;" %> 
+    <% else %>
+      <%= select_tag "project", options_for_select(@projects, selected: params[:project].to_i), prompt: "Show all", style: "width:165px;" %>   
+    <% end %>  
+  </td>
+  <td>
+    <%= select_tag "activity_type", options_for_select(ActivityType.getactivity_type.collect{ |u| [u.name, u.id] }, selected: params[:activity_type].to_i) , prompt: "Show all", style: "width: 165px;" %> 
+  </td>
+  <td>
+    <% if !params[:from].present? %>
+      <%= select_date Date.today, prefix: "from" %>
+    <% else %>
+    <% from = params[:from]["year"] +'/'+params[:from]["month"] +'/'+ params[:from]["day"] %>
+      <%= select_date from.to_date, prefix: "from" %>
+    <% end %>     
+  </td>
+  <td>
+    <% if !params[:to].present? %>
+      <%= select_date Date.today, prefix: "to" %>
+    <% else %>
+    <% to = params[:to]["year"] +'/'+params[:to]["month"] +'/'+ params[:to]["day"] %>
+      <%= select_date to.to_date, prefix: "to" %>
+    <% end %> 
+  </td>
+</tr>
+  

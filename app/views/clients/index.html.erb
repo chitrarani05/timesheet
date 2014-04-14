@@ -2,11 +2,12 @@
 <div>
   <table class="imagetable">
     <tr>
-      <th align = "left"> Name </td>
-      <th align = "left"> Code </td>
-      <th colspan="3", align = "left"> Actions </td>
+      <th align = "left"> Name </th>
+      <th align = "left"> Code </th>
+      <th colspan="3", align = "left"> Actions </th>
     </tr>
   <% if @clients.present? %>
+    <%= will_paginate @clients %>
     <%= render partial: "clients/client", collection: @clients %>
   <% else %>
     <tr><td colspan="4"> "No client found" </td></tr>

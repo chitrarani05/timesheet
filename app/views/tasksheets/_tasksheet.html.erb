@@ -1,0 +1,65 @@
+<tr id="row_id_<%= key %>">
+  <td>
+    <%= select_tag "client[#{key}]", options_for_select(Client.getclient.collect{ |u| [u.name, u.id] }, selected: tasksheet.client_id), prompt: "Select Client",
+          data: {
+            remote: true,
+            url: url_for(action: :projects_for_client, id: key)
+          }, style: "width:165px;" %> 
+    <% if tasksheet.errors.present? && tasksheet.errors[:client].present? %>
+      <%= tasksheet.errors[:client].join(", ") %>
+    <% end %>                      
+  </td>
+  <td>
+    <% if tasksheet.client_id  %>
+      <%= select_tag "project[#{key}]", options_for_select(Project.where(client_id: tasksheet.client_id).collect{ |u| [u.name, u.id] }, selected: tasksheet.project_id), prompt: "select project", style: "width:165px;" %> 
+      <% if tasksheet.errors.present? && tasksheet.errors[:project].present? %>
+      <%= tasksheet.errors[:project].join(", ") %>
+      <% end %> 
+    <% else %>
+      <%= select_tag "project[#{key}]", "[]", prompt: "Select PROJECT", style: "width:165px;" %>
+    <% end %> 
+  </td>
+  <td>
+    <%= select_tag "activity_type[#{key}]", options_for_select(ActivityType.getactivity_type.collect{ |u| [u.name, u.id] }, selected: tasksheet.activity_type_id), prompt: "Select Activity Type", style: "width: 165px;" %> 
+    <% if tasksheet.errors.present? && tasksheet.errors[:activity_type].present? %>
+      <%= tasksheet.errors[:activity_type].join(", ") %>
+    <% end %>
+  </td>
+  <td>
+    <%= text_field_tag "task[#{key}]", tasksheet.task %>
+    <% if tasksheet.errors.present? && tasksheet.errors[:task].present? %>
+      <%= tasksheet.errors[:task].join(", ") %>
+    <% end %>
+  </td>
+  <td>
+    <% if tasksheet.date != nil %>
+      <%= select_date tasksheet.date, prefix: "date[#{key}]" %>
+    <% else %>
+      <%= select_date Date.today, prefix: "date[#{key}]" %>
+    <% end %>  
+    <% if tasksheet.errors.present? && tasksheet.errors[:date].present? %>
+      <%= tasksheet.errors[:date].join(", ") %>
+    <% end %>
+  </td>
+  <td>
+    <%= select_time tasksheet.in_time, prefix: "in_time[#{key}]", minute_step: 15 %>
+    <% if tasksheet.errors.present? && tasksheet.errors[:in_time].present? %>
+      <%= tasksheet.errors[:in_time].join(", ") %>
+    <% end %>
+  </td>
+  <td>
+    <%= select_time tasksheet.out_time, prefix: "out_time[#{key}]", minute_step: 15 %> 
+    <% if tasksheet.errors.present? && tasksheet.errors[:out_time].present? %>
+      <%= tasksheet.errors[:out_time].join(", ") %>
+    <% end %>    
+  </td>
+  <td>
+    <%= text_field_tag "remark[#{key}]", tasksheet.remark %>
+  </td>
+  <td id = "fdelete_<%= key %>" <% if key == 0 %>
+                                  style="display:none;"
+                                <% end %>   >
+    <%= link_to "delete", "#", id: "delete_#{key}", onclick: "delete_row(#{key});return false;" %>
+  </td>
+</tr>
+  

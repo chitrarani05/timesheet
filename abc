@@ -1,0 +1,37 @@
+# On branch master
+# Changes not staged for commit:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	deleted:    app/assets/stylesheets/TableCSSCode.css
+#	modified:   app/assets/stylesheets/application.css.scss
+#	modified:   app/controllers/activity_types_controller.rb
+#	modified:   app/controllers/clients_controller.rb
+#	modified:   app/controllers/confirmations_controller.rb
+#	modified:   app/controllers/employees_controller.rb
+#	modified:   app/models/client.rb
+#	modified:   app/models/employee.rb
+#	modified:   app/models/user.rb
+#	modified:   app/views/activity_types/_form.html.erb
+#	modified:   app/views/activity_types/index.html.erb
+#	modified:   app/views/clients/_form.html.erb
+#	modified:   app/views/clients/edit.html.erb
+#	modified:   app/views/clients/index.html.erb
+#	modified:   app/views/employees/_form.html.erb
+#	modified:   app/views/employees/edit.html.erb
+#	modified:   app/views/employees/index.html.erb
+#	modified:   app/views/home/index.html.erb
+#	modified:   app/views/layouts/application.html.erb
+#	modified:   app/views/projects/_form.html.erb
+#	modified:   app/views/projects/index.html.erb
+#	modified:   config/routes.rb
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	abc
+#	app/views/activity_types/_activity_type.html.erb
+#	app/views/clients/_client.html.erb
+#	app/views/employees/_employee.html.erb
+#	app/views/projects/_project.html.erb
+no changes added to commit (use "git add" and/or "git commit -a")
