@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
-
+ruby '1.9.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -23,6 +23,7 @@ end
 gem 'jquery-rails', '3.0.4'
 gem 'devise', '3.0'
 gem 'will_paginate'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -36,5 +37,5 @@ gem 'will_paginate'
 # gem 'capistrano'
 
 # To use debugger
- gem 'debugger', '1.6.1'
+# gem 'debugger', '1.6.1'
  gem 'quiet_assets', '1.0.2'
