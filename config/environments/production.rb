@@ -1,6 +1,10 @@
 TimesheetManagement::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'protected-dusk-9525.herokuapp.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
   # Code is not reloaded between requests
   config.cache_classes = true
   
@@ -15,7 +19,7 @@ TimesheetManagement::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
