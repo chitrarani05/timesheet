@@ -45,9 +45,9 @@ class Client < ActiveRecord::Base
     arr = []
     obj = Client.all 
     obj.each do |client|
-      if client.projects.present?
+      #if client.projects.present?
         arr << client
-      end
+      #end
     end
     arr    
   end    
