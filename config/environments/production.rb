@@ -12,12 +12,12 @@ TimesheetManagement::Application.configure do
     config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
       port:                 587,
-      domain:               'demo-timesheet.herokuapp.com',
-      user_name:            'app.send.emails@gmail.com',
-      password:             'Pass@123',
+      domain:               'protected-dusk-9525.herokuapp.com',
+      user_name:            'goldychauhan1912@gmail.com',
+      password:             'ngobaraut',
       authentication:       'plain',
       enable_starttls_auto: true  }
-      config.action_mailer.default_url_options = {host: 'demo-timesheet.herokuapp.com'}
+      config.action_mailer.default_url_options = {host: 'protected-dusk-9525.herokuapp.com'}
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
