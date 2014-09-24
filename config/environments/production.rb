@@ -8,6 +8,17 @@ TimesheetManagement::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
   
+	config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'demo-timesheet.herokuapp.com',
+      user_name:            'app.send.emails@gmail.com',
+      password:             'Pass@123',
+      authentication:       'plain',
+      enable_starttls_auto: true  }
+      config.action_mailer.default_url_options = {host: 'demo-timesheet.herokuapp.com'}
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
